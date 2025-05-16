@@ -5,8 +5,8 @@ import { Theme } from '@radix-ui/themes'
 
 import Navbar from '@/components/Navbar'
 
-import './globals.css'
 import '@radix-ui/themes/styles.css'
+import './globals.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClerkProvider>
-          <Theme>
+          <Theme appearance="dark">
             <Navbar />
             {children}
           </Theme>
