@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Container, Flex, Button, Avatar, Separator } from '@radix-ui/themes'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import { useUser, SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs'
 
 const Navbar = (): React.ReactNode | null => {
@@ -11,18 +12,9 @@ const Navbar = (): React.ReactNode | null => {
   if (!isLoaded) return null
 
   return (
-    <nav
-      className="fixed top-0 left-0 z-50 w-full shadow-md"
-      style={{ backgroundColor: 'var(--gray-1)' }}
-    >
-      <Container>
-        <Flex
-          className="mx-auto"
-          align="center"
-          justify="between"
-          px="4"
-          py="3"
-        >
+    <nav className="fixed top-0 left-0 z-50 w-full shadow-md">
+      <div className="container mx-auto">
+        <div className="flex justify-between px-2 py-4">
           <Link href="/">
             <Image
               src="/globe.svg"
@@ -33,7 +25,7 @@ const Navbar = (): React.ReactNode | null => {
             />
           </Link>
 
-          <Flex gap="5" align="center">
+          <div className="flex items-center gap-4">
             <SignedIn>
               <Link href="/">
                 <Button variant="ghost">ToDo</Button>
@@ -41,19 +33,16 @@ const Navbar = (): React.ReactNode | null => {
 
               {user?.imageUrl ? (
                 <Link href="/profile">
-                  <Avatar
-                    src={user.imageUrl}
-                    fallback="U"
-                    size="2"
-                    radius="full"
-                  />
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                  </Avatar>
                 </Link>
               ) : (
-                <Avatar fallback="?" size="2" radius="full" />
+                <AvatarFallback>CN</AvatarFallback>
               )}
 
               <SignOutButton>
-                <Button variant="solid">Sign Out</Button>
+                <Button>Sign Out</Button>
               </SignOutButton>
             </SignedIn>
 
@@ -67,13 +56,12 @@ const Navbar = (): React.ReactNode | null => {
               </Link>
 
               <Link href="/sign-up">
-                <Button variant="solid">Sign Up</Button>
+                <Button>Sign Up</Button>
               </Link>
             </SignedOut>
-          </Flex>
-        </Flex>
-      </Container>
-      <Separator orientation="horizontal" size="4" />
+          </div>
+        </div>
+      </div>
     </nav>
   )
 }

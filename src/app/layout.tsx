@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
-import { Theme } from '@radix-ui/themes'
 
 import Navbar from '@/components/Navbar'
 
-import '@radix-ui/themes/styles.css'
 import './globals.css'
 
 const geistSans = Geist({
@@ -34,10 +32,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClerkProvider>
-          <Theme grayColor="mauve" accentColor="jade">
-            <Navbar />
-            {children}
-          </Theme>
+          <Navbar />
+          {children}
         </ClerkProvider>
       </body>
     </html>
