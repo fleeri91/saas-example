@@ -1,9 +1,12 @@
 import { SignUp } from '@clerk/nextjs'
+import { Container, Flex } from '@radix-ui/themes'
 
 const SignupPage = () => (
-  <div className="align-center mx-auto flex max-w-7xl justify-center px-4 py-8 sm:py-12 lg:py-16">
-    <SignUp forceRedirectUrl="/subscribe" />
-  </div>
+  <Container align="center" width="full">
+    <Flex direction="column" align="center" className="py-32">
+      <SignUp forceRedirectUrl="/subscribe" />
+    </Flex>
+  </Container>
 )
 
 export default SignupPage
