@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { useUser, SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs'
+import Container from '@/components/Container'
 
 const Navbar = (): React.ReactNode | null => {
   const { isLoaded, isSignedIn, user } = useUser()
@@ -12,8 +13,8 @@ const Navbar = (): React.ReactNode | null => {
   if (!isLoaded) return null
 
   return (
-    <nav className="fixed top-0 left-0 z-50 w-full shadow-md">
-      <div className="container mx-auto">
+    <nav className="bg-background sticky top-0 left-0 z-50 w-full shadow-md">
+      <Container>
         <div className="flex justify-between px-2 py-4">
           <Link href="/">
             <Image
@@ -61,7 +62,7 @@ const Navbar = (): React.ReactNode | null => {
             </SignedOut>
           </div>
         </div>
-      </div>
+      </Container>
     </nav>
   )
 }
